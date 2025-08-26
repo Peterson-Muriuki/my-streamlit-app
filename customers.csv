@@ -1,0 +1,9 @@
+CustomerID,Name,Email,Plan,JoinDate,Status,SalesRep
+101,Alice,alice@example.com,Premium,2025-09-01,Active,Joy
+102,Bob,bob@example.com,Basic,2025-07-15,Inactive,Sam
+103,Charlie,charlie@example.com,Standard,2025-06-20,Active,Jane
+104,Diana,diana@example.com,Premium,2025-03-05,Active,Joy
+105,Eve,eve@example.com,Basic,2025-08-01,Inactive,Sam
+106,Frank,frank@example.com,Standard,2025-01-18,Active,Jane
+107,Grace,grace@example.com,Premium,2025-05-12,Active,Joy
+108,Henry,henry@example.com,Basic,2025-02-22,Inactive,Sam
