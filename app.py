@@ -1,14 +1,11 @@
-import streamlit as st
-from openai import OpenAI
 import os
+from openai import OpenAI
+import streamlit as st
 
-# Either from environment variable:
-api_key = os.getenv("OPENAI_API_KEY")
-
-# Or paste your key directly (not recommended for production):
-# api_key = "sk-XXXXXXXXXXXXXXXXXXXX"
-
+# Fetch key from Streamlit secrets
+api_key = st.secrets["OPENAI_API_KEY"]
 client = OpenAI(api_key=api_key)
+
 
 
 # Streamlit UI
