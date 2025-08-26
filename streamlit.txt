@@ -1,0 +1,39 @@
+import streamlit as st
+from agent.support_agent import SupportAgent
+
+st.set_page_config(page_title="Healthcare Support Agent", layout="centered")
+st.title("🏥 Healthcare Support Agent")
+
+# Init agent
+agent = SupportAgent()
+
+# conversation history in session
+if "history" not in st.session_state:
+    st.session_state.history = []
+
+st.sidebar.header("Agent controls")
+if st.sidebar.button("Clear conversation"):
+    st.session_state.history = []
+
+st.sidebar.markdown("**Knowledge base (for debugging)**")
+if st.sidebar.checkbox("Show KB"):
+    for q, a in agent.kb.items():
+        st.sidebar.markdown(f"**Q:** {q}\n\n**A:** {a}\n---")
+
+# Input
+with st.form(key="query_form"):
+    query = st.text_input("How can I help you today?", placeholder="e.g., How do I book an appointment?")
+    submit = st.form_submit_button("Send")
+
+if submit and query:
+    st.session_state.history.append(("You", query))
+    with st.spinner("Agent thinking..."):
+        answer = agent.get_answer(query)
+    st.session_state.history.append(("Agent", answer))
+
+# Display chat
+for speaker, text in st.session_state.history:
+    if speaker == "You":
+        st.markdown(f"**You:** {text}")
+    else:
+        st.markdown(f"**Agent:** {text}")
